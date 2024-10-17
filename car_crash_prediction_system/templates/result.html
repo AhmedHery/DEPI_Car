@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Result</title>
+</head>
+<body>
+    <div class="result-container">
+        <div class="media-section">
+            {% if image_data %}
+                <img src="data:image/png;base64,{{ image_data }}" alt="Image" style="max-width: 100%;">
+            {% elif video_path %}
+                <video controls style="max-width: 100%;">
+                    <source src="{{ video_path }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+        </div>
+        <div class="prediction-section">
+            <h1>Prediction Result</h1>
+            <p>The model predicts: <strong>{{ result }}</strong></p>
+            <a href="/">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
